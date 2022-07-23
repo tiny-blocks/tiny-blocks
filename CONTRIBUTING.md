@@ -25,7 +25,7 @@ This section guides you through possible ways to contribute.
 
 ### Reporting bugs
 
-Bugs are tracked as [issues]() on
+Bugs are tracked as [issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues) on
 GitHub, then in the respective repository the bug is related to, create an issue, and provide the following information:
 
 - Use a clear and descriptive title to identify the problem.
@@ -38,7 +38,7 @@ GitHub, then in the respective repository the bug is related to, create an issue
 ### Suggesting improvements
 
 Improvement suggestions are tracked
-like [issues]() in
+like [issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/about-issues) in
 GitHub, then in the respective repository that your improvement suggestion is related to, create an issue, and provide
 the following information:
 
