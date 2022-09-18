@@ -36,13 +36,13 @@ concrete implementations.
 
 ## License
 
-All code from the **Tiny Blocks** project is licensed under the [MIT](/LICENSE) license.
+All code from the **Tiny Blocks** project is licensed under the [MIT](LICENSE) license.
 
 ## Contributing
 
-Please follow the [contribution guidelines](/CONTRIBUTING.md) to contribute to the project.
+Please follow the [contribution guidelines](CONTRIBUTING.md) to contribute to the project.
 
 ## Code of Conduct
 
-This project and everyone participates in it is governed by the [code of conduct](/CODE_OF_CONDUCT.md). By
+This project and everyone participates in it is governed by the [code of conduct](CODE_OF_CONDUCT.md). By
 participating, you are expected to uphold this code.
