@@ -1,0 +1,30 @@
+# PHP dependencies
+/vendor/
+composer.lock
+
+# Local config overrides (committed baselines are the .dist files)
+/phpstan.neon
+/infection.json
+
+# Tooling cache
+.phpunit.cache/
+.phpunit.result.cache
+__pycache__/
+*.pyc
+
+# Coverage and reports
+build/
+reports/
+coverage/
+infection.log
+
+# Editors and agents
+.idea/
+.cursor/
+.vscode/
+/.claude/settings.local.json
+
+# OS
+Thumbs.db
+.DS_Store
+Desktop.ini

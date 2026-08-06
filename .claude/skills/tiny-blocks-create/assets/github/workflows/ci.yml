@@ -1,0 +1,105 @@
+name: CI
+
+on:
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  resolve-php-version:
+    name: Resolve PHP version
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      php-version: ${{ steps.config.outputs.php-version }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Resolve PHP version from composer.json
+        id: config
+        run: |
+          version=$(jq -r '.require.php' composer.json | grep -oP '\d+\.\d+' | head -1)
+          echo "php-version=$version" >> "$GITHUB_OUTPUT"
+
+  build:
+    name: Build
+    needs: resolve-php-version
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          tools: composer:2
+          php-version: ${{ needs.resolve-php-version.outputs.php-version }}
+
+      - name: Validate composer.json
+        run: composer validate --no-interaction
+
+      - name: Install dependencies
+        run: composer install --no-progress --optimize-autoloader --prefer-dist --no-interaction
+
+      - name: Upload vendor and composer.lock as artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: vendor-artifact
+          path: |
+            vendor
+            composer.lock
+
+  auto-review:
+    name: Auto review
+    needs: [resolve-php-version, build]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          tools: composer:2
+          php-version: ${{ needs.resolve-php-version.outputs.php-version }}
+
+      - name: Download vendor artifact from build
+        uses: actions/download-artifact@v8
+        with:
+          name: vendor-artifact
+          path: .
+
+      - name: Run review
+        run: composer review
+
+  tests:
+    name: Tests
+    needs: [resolve-php-version, auto-review]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          tools: composer:2
+          php-version: ${{ needs.resolve-php-version.outputs.php-version }}
+
+      - name: Download vendor artifact from build
+        uses: actions/download-artifact@v8
+        with:
+          name: vendor-artifact
+          path: .
+
+      - name: Run tests
+        run: composer tests
