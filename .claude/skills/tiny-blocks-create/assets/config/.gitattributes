@@ -1,0 +1,19 @@
+* text=auto eol=lf
+
+*.php text diff=php
+
+# Keep Claude tooling scripts out of GitHub's language statistics
+
+# Dev-only, excluded from the Packagist tarball
+/.github             export-ignore
+/tests               export-ignore
+/.editorconfig       export-ignore
+/.gitattributes      export-ignore
+/.gitignore          export-ignore
+/phpcs.xml           export-ignore
+/phpunit.xml         export-ignore
+/phpstan.neon.dist   export-ignore
+/infection.json.dist export-ignore
+/Makefile            export-ignore
+/reports             export-ignore
+/.phpunit.cache      export-ignore

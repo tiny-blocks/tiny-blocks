@@ -1,0 +1,72 @@
+{
+    "name": "tiny-blocks/<lib-name>",
+    "description": "<one short sentence describing what the library does>",
+    "license": "MIT",
+    "type": "library",
+    "keywords": [
+        "tiny-blocks",
+        "<topic-1>",
+        "<topic-2>"
+    ],
+    "authors": [
+        {
+            "name": "Gustavo Freze de Araujo Santos",
+            "homepage": "https://github.com/gustavofreze"
+        }
+    ],
+    "homepage": "https://github.com/tiny-blocks/<lib-name>",
+    "support": {
+        "issues": "https://github.com/tiny-blocks/<lib-name>/issues",
+        "source": "https://github.com/tiny-blocks/<lib-name>"
+    },
+    "require": {
+        "php": "^8.5"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.52",
+        "infection/infection": "^0.34",
+        "phpstan/phpstan": "^2.2",
+        "phpunit/phpunit": "^13.2",
+        "slevomat/coding-standard": "^8.31",
+        "squizlabs/php_codesniffer": "^4.0"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "autoload": {
+        "psr-4": {
+            "TinyBlocks\\<LibName>\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Test\\TinyBlocks\\<LibName>\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "ergebnis/composer-normalize": true,
+            "infection/extension-installer": true
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "configure": [
+            "@composer install --optimize-autoloader",
+            "@composer normalize"
+        ],
+        "configure-and-update": [
+            "@composer update --optimize-autoloader",
+            "@composer normalize"
+        ],
+        "review": [
+            "@php ./vendor/bin/phpcs --standard=phpcs.xml --extensions=php ./src ./tests",
+            "@php ./vendor/bin/phpstan analyse -c phpstan.neon.dist --quiet --no-progress"
+        ],
+        "test-file": "@php ./vendor/bin/phpunit --configuration phpunit.xml --no-coverage --filter",
+        "tests": [
+            "@php -d memory_limit=2G ./vendor/bin/phpunit --configuration phpunit.xml tests",
+            "@php ./vendor/bin/infection --threads=max --logger-html=reports/coverage/mutation-report.html --coverage=reports/coverage"
+        ]
+    }
+}
