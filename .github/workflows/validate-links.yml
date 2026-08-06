@@ -12,10 +12,10 @@ jobs:
       issues: write
       contents: read
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check links
         id: lychee
-        uses: lycheeverse/lychee-action@v2.7.0
+        uses: lycheeverse/lychee-action@v2.9.0
         with:
           fail: false
       - name: Create issue
@@ -27,7 +27,7 @@ jobs:
           content-filepath: ./lychee/out.md
       - name: Assign issues and pull requests
         if: steps.lychee.outputs.exit_code != 0
-        uses: gustavofreze/auto-assign@2.0.0
+        uses: gustavofreze/auto-assign@2.1.0
         with:
           assignees: '${{ vars.ASSIGNEES }}'
           github_token: '${{ secrets.GITHUB_TOKEN }}'
