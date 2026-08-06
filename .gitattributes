@@ -1,0 +1,9 @@
+* text=auto eol=lf
+
+# Tooling scripts, not what this repository is written in. Without this the language
+# statistics report the organization landing page as a Python project.
+/.claude/**/*.py           linguist-vendored
+/doc/scripts/**/*.py       linguist-vendored
+
+# Exported from dependency-graph.excalidraw, not authored by hand.
+/doc/dependency-graph.svg  linguist-generated
