@@ -1,0 +1,245 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1636" viewBox="0 0 1920 1636" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">
+<rect width="1920" height="1636" fill="#191f33"/>
+<text x="40.0" y="67.6" fill="#d2daff" font-size="30" xml:space="preserve">
+<tspan x="40.0" dy="0.0">tiny-blocks dependency map</tspan>
+</text>
+<text x="40.0" y="97.8" fill="#8f98d6" font-size="15" xml:space="preserve">
+<tspan x="40.0" dy="0.0">Each card names a library and lists every library that pulls it in.</tspan>
+</text>
+<polyline points="40.0,134.0 1880.0,134.0" fill="none" stroke="#4c5c94" stroke-width="1" stroke-dasharray="8 5"/>
+<text x="40.0" y="169.3" fill="#d2daff" font-size="21" xml:space="preserve">
+<tspan x="40.0" dy="0.0">Depend on no other tiny-blocks library</tspan>
+</text>
+<text x="40.0" y="192.9" fill="#8f98d6" font-size="14" xml:space="preserve">
+<tspan x="40.0" dy="0.0">the foundation, safe to release first</tspan>
+</text>
+<rect x="40.0" y="212.0" width="430.0" height="152.0" rx="10" fill="#242b45" stroke="#ffffff" stroke-width="2"/>
+<text x="58.0" y="243.6" fill="#ffffff" font-size="17" xml:space="preserve">
+<tspan x="58.0" dy="0.0">currency</tspan>
+</text>
+<text x="58.0" y="273.0" fill="#ffffff" font-size="12" xml:space="preserve">
+<tspan x="58.0" dy="0.0">used by 1</tspan>
+</text>
+<text x="58.0" y="295.5" fill="#d2daff" font-size="12.5" xml:space="preserve">
+<tspan x="58.0" dy="0.0">collection (dev)</tspan>
+</text>
+<rect x="500.0" y="212.0" width="430.0" height="152.0" rx="10" fill="#4c5c94" stroke="#d2daff" stroke-width="2"/>
+<text x="518.0" y="243.6" fill="#d2daff" font-size="17" xml:space="preserve">
+<tspan x="518.0" dy="0.0">encoder</tspan>
+</text>
+<text x="518.0" y="273.0" fill="#d2daff" font-size="12" xml:space="preserve">
+<tspan x="518.0" dy="0.0">used by 1</tspan>
+</text>
+<text x="518.0" y="295.5" fill="#d2daff" font-size="12.5" xml:space="preserve">
+<tspan x="518.0" dy="0.0">ksuid</tspan>
+</text>
+<rect x="960.0" y="212.0" width="430.0" height="152.0" rx="10" fill="#242b45" stroke="#ffffff" stroke-width="2"/>
+<text x="978.0" y="243.6" fill="#ffffff" font-size="17" xml:space="preserve">
+<tspan x="978.0" dy="0.0">environment-variable</tspan>
+</text>
+<text x="978.0" y="273.0" fill="#ffffff" font-size="12" xml:space="preserve">
+<tspan x="978.0" dy="0.0">used by 1</tspan>
+</text>
+<text x="978.0" y="295.5" fill="#d2daff" font-size="12.5" xml:space="preserve">
+<tspan x="978.0" dy="0.0">outbox (dev)</tspan>
+</text>
+<rect x="1420.0" y="212.0" width="430.0" height="152.0" rx="10" fill="#4c5c94" stroke="#d2daff" stroke-width="2"/>
+<text x="1438.0" y="243.6" fill="#d2daff" font-size="17" xml:space="preserve">
+<tspan x="1438.0" dy="0.0">http-correlation-id</tspan>
+</text>
+<text x="1438.0" y="273.0" fill="#d2daff" font-size="12" xml:space="preserve">
+<tspan x="1438.0" dy="0.0">used by 2</tspan>
+</text>
+<text x="1438.0" y="295.5" fill="#d2daff" font-size="12.5" xml:space="preserve">
+<tspan x="1438.0" dy="0.0">http-error-handler, http-logging</tspan>
+</text>
+<rect x="40.0" y="384.0" width="430.0" height="152.0" rx="10" fill="#1c2136" stroke="#8f98d6" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="58.0" y="415.6" fill="#8f98d6" font-size="17" xml:space="preserve">
+<tspan x="58.0" dy="0.0">immutable-object</tspan>
+</text>
+<text x="58.0" y="448.0" fill="#8f98d6" font-size="13" xml:space="preserve">
+<tspan x="58.0" dy="0.0">used by nobody</tspan>
+</text>
+<rect x="500.0" y="384.0" width="430.0" height="152.0" rx="10" fill="#d2daff" stroke="#4c5c94" stroke-width="2"/>
+<text x="518.0" y="415.6" fill="#4c5c94" font-size="17" xml:space="preserve">
+<tspan x="518.0" dy="0.0">mapper</tspan>
+</text>
+<text x="518.0" y="445.0" fill="#4c5c94" font-size="12" xml:space="preserve">
+<tspan x="518.0" dy="0.0">used by 5</tspan>
+</text>
+<text x="518.0" y="467.5" fill="#4c5c94" font-size="12.5" xml:space="preserve">
+<tspan x="518.0" dy="0.0">building-blocks, collection, http, outbox, time</tspan>
+</text>
+<rect x="960.0" y="384.0" width="430.0" height="152.0" rx="10" fill="#1c2136" stroke="#8f98d6" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="978.0" y="415.6" fill="#8f98d6" font-size="17" xml:space="preserve">
+<tspan x="978.0" dy="0.0">math</tspan>
+</text>
+<text x="978.0" y="448.0" fill="#8f98d6" font-size="13" xml:space="preserve">
+<tspan x="978.0" dy="0.0">used by nobody</tspan>
+</text>
+<rect x="1420.0" y="384.0" width="430.0" height="152.0" rx="10" fill="#4c5c94" stroke="#d2daff" stroke-width="2"/>
+<text x="1438.0" y="415.6" fill="#d2daff" font-size="17" xml:space="preserve">
+<tspan x="1438.0" dy="0.0">value-object</tspan>
+</text>
+<text x="1438.0" y="445.0" fill="#d2daff" font-size="12" xml:space="preserve">
+<tspan x="1438.0" dy="0.0">used by 3</tspan>
+</text>
+<text x="1438.0" y="467.5" fill="#d2daff" font-size="12.5" xml:space="preserve">
+<tspan x="1438.0" dy="0.0">building-blocks, country, time</tspan>
+</text>
+<polyline points="40.0,586.0 1880.0,586.0" fill="none" stroke="#4c5c94" stroke-width="1" stroke-dasharray="8 5"/>
+<text x="40.0" y="621.3" fill="#d2daff" font-size="21" xml:space="preserve">
+<tspan x="40.0" dy="0.0">Depend on other libraries</tspan>
+</text>
+<text x="40.0" y="644.9" fill="#8f98d6" font-size="14" xml:space="preserve">
+<tspan x="40.0" dy="0.0">release these after everything they use</tspan>
+</text>
+<rect x="40.0" y="664.0" width="430.0" height="152.0" rx="10" fill="#4c5c94" stroke="#d2daff" stroke-width="2"/>
+<text x="58.0" y="695.6" fill="#d2daff" font-size="17" xml:space="preserve">
+<tspan x="58.0" dy="0.0">building-blocks</tspan>
+</text>
+<text x="58.0" y="725.0" fill="#d2daff" font-size="12" xml:space="preserve">
+<tspan x="58.0" dy="0.0">used by 1</tspan>
+</text>
+<text x="58.0" y="747.5" fill="#d2daff" font-size="12.5" xml:space="preserve">
+<tspan x="58.0" dy="0.0">outbox</tspan>
+</text>
+<rect x="500.0" y="664.0" width="430.0" height="152.0" rx="10" fill="#d2daff" stroke="#4c5c94" stroke-width="2"/>
+<text x="518.0" y="695.6" fill="#4c5c94" font-size="17" xml:space="preserve">
+<tspan x="518.0" dy="0.0">collection</tspan>
+</text>
+<text x="518.0" y="725.0" fill="#4c5c94" font-size="12" xml:space="preserve">
+<tspan x="518.0" dy="0.0">used by 8</tspan>
+</text>
+<text x="518.0" y="747.5" fill="#4c5c94" font-size="12.5" xml:space="preserve">
+<tspan x="518.0" dy="0.0">building-blocks, country, docker-container,</tspan>
+<tspan x="518.0" dy="15.6">http-health-check, http-query, logger, outbox,</tspan>
+<tspan x="518.0" dy="15.6">time</tspan>
+</text>
+<rect x="960.0" y="664.0" width="430.0" height="152.0" rx="10" fill="#1c2136" stroke="#8f98d6" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="978.0" y="695.6" fill="#8f98d6" font-size="17" xml:space="preserve">
+<tspan x="978.0" dy="0.0">country</tspan>
+</text>
+<text x="978.0" y="728.0" fill="#8f98d6" font-size="13" xml:space="preserve">
+<tspan x="978.0" dy="0.0">used by nobody</tspan>
+</text>
+<rect x="1420.0" y="664.0" width="430.0" height="152.0" rx="10" fill="#242b45" stroke="#ffffff" stroke-width="2"/>
+<text x="1438.0" y="695.6" fill="#ffffff" font-size="17" xml:space="preserve">
+<tspan x="1438.0" dy="0.0">docker-container</tspan>
+</text>
+<text x="1438.0" y="725.0" fill="#ffffff" font-size="12" xml:space="preserve">
+<tspan x="1438.0" dy="0.0">used by 1</tspan>
+</text>
+<text x="1438.0" y="747.5" fill="#d2daff" font-size="12.5" xml:space="preserve">
+<tspan x="1438.0" dy="0.0">outbox (dev)</tspan>
+</text>
+<rect x="40.0" y="836.0" width="430.0" height="152.0" rx="10" fill="#d2daff" stroke="#4c5c94" stroke-width="2"/>
+<text x="58.0" y="867.6" fill="#4c5c94" font-size="17" xml:space="preserve">
+<tspan x="58.0" dy="0.0">http</tspan>
+</text>
+<text x="58.0" y="897.0" fill="#4c5c94" font-size="12" xml:space="preserve">
+<tspan x="58.0" dy="0.0">used by 4</tspan>
+</text>
+<text x="58.0" y="919.5" fill="#4c5c94" font-size="12.5" xml:space="preserve">
+<tspan x="58.0" dy="0.0">http-error-handler, http-health-check, http-</tspan>
+<tspan x="58.0" dy="15.6">logging, http-query</tspan>
+</text>
+<rect x="500.0" y="836.0" width="430.0" height="152.0" rx="10" fill="#1c2136" stroke="#8f98d6" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="518.0" y="867.6" fill="#8f98d6" font-size="17" xml:space="preserve">
+<tspan x="518.0" dy="0.0">http-error-handler</tspan>
+</text>
+<text x="518.0" y="900.0" fill="#8f98d6" font-size="13" xml:space="preserve">
+<tspan x="518.0" dy="0.0">used by nobody</tspan>
+</text>
+<rect x="960.0" y="836.0" width="430.0" height="152.0" rx="10" fill="#1c2136" stroke="#8f98d6" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="978.0" y="867.6" fill="#8f98d6" font-size="17" xml:space="preserve">
+<tspan x="978.0" dy="0.0">http-health-check</tspan>
+</text>
+<text x="978.0" y="900.0" fill="#8f98d6" font-size="13" xml:space="preserve">
+<tspan x="978.0" dy="0.0">used by nobody</tspan>
+</text>
+<rect x="1420.0" y="836.0" width="430.0" height="152.0" rx="10" fill="#1c2136" stroke="#8f98d6" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="1438.0" y="867.6" fill="#8f98d6" font-size="17" xml:space="preserve">
+<tspan x="1438.0" dy="0.0">http-logging</tspan>
+</text>
+<text x="1438.0" y="900.0" fill="#8f98d6" font-size="13" xml:space="preserve">
+<tspan x="1438.0" dy="0.0">used by nobody</tspan>
+</text>
+<rect x="40.0" y="1008.0" width="430.0" height="152.0" rx="10" fill="#1c2136" stroke="#8f98d6" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="58.0" y="1039.6" fill="#8f98d6" font-size="17" xml:space="preserve">
+<tspan x="58.0" dy="0.0">http-query</tspan>
+</text>
+<text x="58.0" y="1072.0" fill="#8f98d6" font-size="13" xml:space="preserve">
+<tspan x="58.0" dy="0.0">used by nobody</tspan>
+</text>
+<rect x="500.0" y="1008.0" width="430.0" height="152.0" rx="10" fill="#4c5c94" stroke="#d2daff" stroke-width="2"/>
+<text x="518.0" y="1039.6" fill="#d2daff" font-size="17" xml:space="preserve">
+<tspan x="518.0" dy="0.0">ksuid</tspan>
+</text>
+<text x="518.0" y="1069.0" fill="#d2daff" font-size="12" xml:space="preserve">
+<tspan x="518.0" dy="0.0">used by 1</tspan>
+</text>
+<text x="518.0" y="1091.5" fill="#d2daff" font-size="12.5" xml:space="preserve">
+<tspan x="518.0" dy="0.0">docker-container</tspan>
+</text>
+<rect x="960.0" y="1008.0" width="430.0" height="152.0" rx="10" fill="#1c2136" stroke="#8f98d6" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="978.0" y="1039.6" fill="#8f98d6" font-size="17" xml:space="preserve">
+<tspan x="978.0" dy="0.0">logger</tspan>
+</text>
+<text x="978.0" y="1072.0" fill="#8f98d6" font-size="13" xml:space="preserve">
+<tspan x="978.0" dy="0.0">used by nobody</tspan>
+</text>
+<rect x="1420.0" y="1008.0" width="430.0" height="152.0" rx="10" fill="#1c2136" stroke="#8f98d6" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="1438.0" y="1039.6" fill="#8f98d6" font-size="17" xml:space="preserve">
+<tspan x="1438.0" dy="0.0">outbox</tspan>
+</text>
+<text x="1438.0" y="1072.0" fill="#8f98d6" font-size="13" xml:space="preserve">
+<tspan x="1438.0" dy="0.0">used by nobody</tspan>
+</text>
+<rect x="40.0" y="1180.0" width="430.0" height="152.0" rx="10" fill="#d2daff" stroke="#4c5c94" stroke-width="2"/>
+<text x="58.0" y="1211.6" fill="#4c5c94" font-size="17" xml:space="preserve">
+<tspan x="58.0" dy="0.0">time</tspan>
+</text>
+<text x="58.0" y="1241.0" fill="#4c5c94" font-size="12" xml:space="preserve">
+<tspan x="58.0" dy="0.0">used by 6</tspan>
+</text>
+<text x="58.0" y="1263.5" fill="#4c5c94" font-size="12.5" xml:space="preserve">
+<tspan x="58.0" dy="0.0">building-blocks, country, http, http-health-</tspan>
+<tspan x="58.0" dy="15.6">check, http-logging, mapper (dev)</tspan>
+</text>
+<polyline points="40.0,1382.0 1880.0,1382.0" fill="none" stroke="#4c5c94" stroke-width="1" stroke-dasharray="8 5"/>
+<text x="40.0" y="1414.6" fill="#d2daff" font-size="18" xml:space="preserve">
+<tspan x="40.0" dy="0.0">How to read the colors</tspan>
+</text>
+<rect x="40.0" y="1436.0" width="28.0" height="22.0" rx="10" fill="#d2daff" stroke="#4c5c94" stroke-width="2"/>
+<text x="82.0" y="1450.9" fill="#4c5c94" font-size="14" xml:space="preserve">
+<tspan x="82.0" dy="0.0">hub</tspan>
+</text>
+<text x="230.0" y="1451.0" fill="#8f98d6" font-size="13" xml:space="preserve">
+<tspan x="230.0" dy="0.0">pulled in by four or more libraries, a breaking change travels far</tspan>
+</text>
+<rect x="40.0" y="1468.0" width="28.0" height="22.0" rx="10" fill="#4c5c94" stroke="#d2daff" stroke-width="2"/>
+<text x="82.0" y="1482.9" fill="#8f98d6" font-size="14" xml:space="preserve">
+<tspan x="82.0" dy="0.0">library</tspan>
+</text>
+<text x="230.0" y="1483.0" fill="#8f98d6" font-size="13" xml:space="preserve">
+<tspan x="230.0" dy="0.0">pulled in by at least one library at runtime</tspan>
+</text>
+<rect x="40.0" y="1500.0" width="28.0" height="22.0" rx="10" fill="#242b45" stroke="#ffffff" stroke-width="2"/>
+<text x="82.0" y="1514.9" fill="#ffffff" font-size="14" xml:space="preserve">
+<tspan x="82.0" dy="0.0">test-only</tspan>
+</text>
+<text x="230.0" y="1515.0" fill="#8f98d6" font-size="13" xml:space="preserve">
+<tspan x="230.0" dy="0.0">pulled in only as a development dependency, never reaches your app</tspan>
+</text>
+<rect x="40.0" y="1532.0" width="28.0" height="22.0" rx="10" fill="#1c2136" stroke="#8f98d6" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="82.0" y="1546.9" fill="#8f98d6" font-size="14" xml:space="preserve">
+<tspan x="82.0" dy="0.0">unused</tspan>
+</text>
+<text x="230.0" y="1547.0" fill="#8f98d6" font-size="13" xml:space="preserve">
+<tspan x="230.0" dy="0.0">nothing in the ecosystem depends on it</tspan>
+</text>
+<text x="40.0" y="1592.0" fill="#8f98d6" font-size="13" xml:space="preserve">
+<tspan x="40.0" dy="0.0">A consumer marked (dev) uses the library only in its test suite.</tspan>
+</text>
+</svg>

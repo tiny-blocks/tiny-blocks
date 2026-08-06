@@ -13,18 +13,41 @@
 
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-<div id='overview'></div> 
+* [Overview](#overview)
+* [Dependencies](#dependencies)
+* [License](#license)
+* [Contributing](#contributing)
+* [Code of Conduct](#code-of-conduct)
+
+<div id='overview'></div>
 
 ## Overview
 
-Before explaining the library's purpose, it is essential to present a summary of the concept on which it is based.
+**Tiny Blocks** is a set of small, focused, framework-agnostic PHP libraries. Each one solves a single problem and can
+be adopted on its own, without pulling in the rest.
 
-Building Blocks from **D**omain **D**riven **D**esign are different types of components. These components have the
-function of highlighting some ideas, concepts, or business rules in a code. They are reusable software
-components that provide functionality and behavior, facilitating generic workflows.
+The building blocks cover the parts most applications rewrite from scratch: collections, time, HTTP primitives and
+middleware, object mapping, structured logging, identifiers, encoding, arbitrary precision numbers, and value object
+contracts. Most of them are general-purpose and stay out of your architecture.
 
-The purpose of this library is to facilitate the implementation of Building Blocks through granular and pluggable
-implementations, which guarantee limits and behaviors.
+Some go further and implement a known pattern end to end, for the cases where getting it right by hand is the expensive
+part. The tactical building blocks of Domain Driven Design come ready to use: entities, aggregate roots, domain events,
+snapshots, and upcasters. The Transactional Outbox pattern comes as a write-side adapter that persists domain events in
+the same transaction as the aggregate state, so a published event and the state that produced it can never disagree.
+
+You take these only if you want them. Nothing here dictates how you model your domain.
+
+This repository is the organization landing page. It holds no library code. Each library lives in its own repository and
+follows the same conventions, so moving between them costs nothing.
+
+<div id='dependencies'></div>
+
+## Dependencies
+
+The libraries build on each other. Each card below names a library and lists every library that pulls it in, so you can
+see how far a breaking change travels before you make one.
+
+<img alt="tiny-blocks dependency map" src="doc/dependency-graph.svg" width="100%">
 
 <div id='license'></div>
 
@@ -42,5 +65,5 @@ Please follow the [contribution guidelines](CONTRIBUTING.md) to contribute to th
 
 ## Code of Conduct
 
-This project and everyone participates in it is governed by the [code of conduct](CODE_OF_CONDUCT.md). By
+This project and everyone who participates in it is governed by the [code of conduct](CODE_OF_CONDUCT.md). By
 participating, you are expected to uphold this code.
