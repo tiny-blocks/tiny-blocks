@@ -12,5 +12,5 @@ Closes #...
 
 - [ ] Tests added or updated.
 - [ ] Documentation updated when applicable.
-- [ ] `composer review` passes.
-- [ ] `composer tests` passes.
+- [ ] `make review` passes.
+- [ ] `make tests` passes.

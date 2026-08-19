@@ -3,4 +3,5 @@ parameters:
     paths:
         - src
         - tests
+    tmpDir: reports/phpstan
     reportUnmatchedIgnoredErrors: true

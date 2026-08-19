@@ -48,6 +48,7 @@
             "ergebnis/composer-normalize": true,
             "infection/extension-installer": true
         },
+        "process-timeout": 0,
         "sort-packages": true
     },
     "scripts": {
