@@ -5,19 +5,29 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch:
 
+concurrency:
+  group: validate-links-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  issues: write
+  contents: read
+
 jobs:
   link-checker:
+    name: Link checker
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      contents: read
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v7
+      - name: Checkout
+        uses: actions/checkout@v7
+
       - name: Check links
         id: lychee
         uses: lycheeverse/lychee-action@v2.9.0
         with:
           fail: false
+
       - name: Create issue
         if: steps.lychee.outputs.exit_code != 0
         uses: peter-evans/create-issue-from-file@v6
@@ -25,6 +35,7 @@ jobs:
           title: Link checker report
           labels: 'report, automated-issue'
           content-filepath: ./lychee/out.md
+
       - name: Assign issues and pull requests
         if: steps.lychee.outputs.exit_code != 0
         uses: gustavofreze/auto-assign@2.1.0
