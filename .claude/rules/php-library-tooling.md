@@ -69,16 +69,18 @@ revise before outputting.
     Makefile uses `indent_style = tab` as per-extension overrides.
 11. `.gitattributes` sets `* text=auto eol=lf` and lists every committed dev-only file under
     `export-ignore`. The Packagist tarball contains only `src/`, `composer.json`, `README.md`,
-    `LICENSE`, and `SECURITY.md`. `.claude/` is listed under `export-ignore` (versioned on
-    GitHub for contributor parity, excluded from the published package), and `CLAUDE.md` (where
-    committed) is `export-ignore`d alongside it for the same reason. `.gitattributes` lists
-    only files that are actually committed: it never names a file the repository does not
-    contain (no `CONTRIBUTING.md`, which is centralized, and no phantom `.dist`/non-`.dist`
-    twin of a file that is committed under only one of those names).
+    `LICENSE`, and `SECURITY.md`. `.gitattributes` lists only files that are actually
+    committed: it never names a file the repository does not contain (no `CONTRIBUTING.md`,
+    which is centralized, no `/.claude`, which a library reaches through an untracked symlink,
+    and no phantom `.dist`/non-`.dist` twin of a file that is committed under only one of those
+    names).
 12. `.gitignore` ignores the dependency and artifact paths, the local config overrides
     (`/phpstan.neon`, `/infection.json`), and nothing tool caches the project does not produce.
-    The `.claude/` directory itself is **not** ignored (it is versioned on GitHub). Only
-    `/.claude/settings.local.json`, the per-clone settings override, is ignored.
+    A library does not commit `.claude/`: it reaches the shared configuration through a
+    relative symlink to the `tiny-blocks` meta repository, kept out of the tree by the
+    per-clone `.git/info/exclude` (see `restore-claude-symlinks.sh`). `.gitignore` still lists
+    `/.claude/settings.local.json`, the per-clone settings override, for parity with the meta
+    repository, where `.claude/` is versioned.
 13. `Makefile` wraps every PHP and Composer command in Docker. It builds the image name from the
     `major.minor` read out of `composer.json` `require.php` and a pinned `IMAGE_VERSION`, so a
     runtime bump moves one declaration and the tooling follows. It exposes that name through

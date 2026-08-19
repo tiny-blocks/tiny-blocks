@@ -200,4 +200,6 @@ must exist and match those assets.
 - `.github/ISSUE_TEMPLATE/bug_report.md`: bug report template (`labels: bug`).
 - `.github/ISSUE_TEMPLATE/feature_request.md`: feature request template (`labels: enhancement`).
 - `.github/PULL_REQUEST_TEMPLATE.md`: pull request template linking the centralized contributing
-  guidelines, with the standard checklist (`composer review` passes, `composer tests` passes).
+  guidelines, with the standard checklist (`make review` passes, `make tests` passes).
+- `.github/copilot-instructions.md`: points GitHub Copilot at `.claude/CLAUDE.md` and
+  `.claude/rules/` as the source of truth for generated code.

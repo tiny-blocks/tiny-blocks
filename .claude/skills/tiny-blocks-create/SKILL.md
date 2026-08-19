@@ -1,6 +1,6 @@
 ---
 name: tiny-blocks-create
-description: Scaffold a new PHP library for the tiny-blocks ecosystem, or restore a single canonical config/repository file (composer.json, phpcs.xml, phpunit.xml, phpstan.neon.dist, infection.json.dist, .editorconfig, .gitattributes, .gitignore, Makefile, the CI workflow, SECURITY.md, the issue templates, the PR template) to its standard shape. Use this skill whenever the user asks to create, bootstrap, set up, or initialize a new tiny-blocks library, to add the standard config/tooling files to a repository, or to fix/regenerate any of those files to match the ecosystem standard, even if they only mention one file by name. This skill owns the canonical bodies of those files. Do not hand-write them from memory.
+description: Scaffold a new PHP library for the tiny-blocks ecosystem, or restore a single canonical config/repository file (composer.json, phpcs.xml, phpunit.xml, phpstan.neon.dist, infection.json.dist, .editorconfig, .gitattributes, .gitignore, Makefile, the CI workflow, SECURITY.md, the issue templates, the PR template, the Copilot instructions) to its standard shape. Use this skill whenever the user asks to create, bootstrap, set up, or initialize a new tiny-blocks library, to add the standard config/tooling files to a repository, or to fix/regenerate any of those files to match the ecosystem standard, even if they only mention one file by name. This skill owns the canonical bodies of those files. Do not hand-write them from memory.
 ---
 
 # tiny-blocks library scaffolding
@@ -42,6 +42,7 @@ Copy each asset to the path on the right, relative to the repository root.
 | `github/ISSUE_TEMPLATE/bug_report.md`      | `.github/ISSUE_TEMPLATE/bug_report.md`      | no           |
 | `github/ISSUE_TEMPLATE/feature_request.md` | `.github/ISSUE_TEMPLATE/feature_request.md` | no           |
 | `github/PULL_REQUEST_TEMPLATE.md`          | `.github/PULL_REQUEST_TEMPLATE.md`          | no           |
+| `github/copilot-instructions.md`           | `.github/copilot-instructions.md`           | no           |
 | `docs/SECURITY.md`                         | `SECURITY.md`                               | yes          |
 
 ## Placeholders
@@ -95,13 +96,13 @@ twin for `phpcs.xml`/`phpunit.xml`, and do not commit a live `phpstan.neon`/`inf
 
 `ci.yml` is the minimal canonical workflow. Only the `tests` job may be extended, and only when
 the library's tests need external services, environment variables, or fixture preparation. Add
-them inside the `tests` job. Leave `resolve-php-version`, `build`, and `auto-review` untouched.
+them inside the `tests` job. Leave `resolve-tooling-image`, `build`, and `auto-review` untouched.
 Example with a MySQL service container:
 
 ```yaml
 tests:
   name: Tests
-  needs: [resolve-php-version, auto-review]
+  needs: [resolve-tooling-image, auto-review]
   runs-on: ubuntu-latest
   timeout-minutes: 15
   env:
@@ -125,13 +126,7 @@ tests:
         --health-retries=5
   steps:
     - name: Checkout
-      uses: actions/checkout@v6
-
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        tools: composer:2
-        php-version: ${{ needs.resolve-php-version.outputs.php-version }}
+      uses: actions/checkout@v7
 
     - name: Download vendor artifact from build
       uses: actions/download-artifact@v8
@@ -140,15 +135,19 @@ tests:
         path: .
 
     - name: Run tests
-      run: composer tests
+      run: make tests
 ```
+
+The extended job still reaches PHP through `make`, never through a runtime installed on the
+runner. Service containers, environment variables, and fixture steps are the only additions.
 
 ## Pinned action versions
 
-The action versions pinned in `ci.yml` (`actions/checkout@v6`, `shivammathur/setup-php@v2`,
-`actions/upload-artifact@v7`, `actions/download-artifact@v8`) may be outdated. Before adopting the
-workflow, verify the current major version of each action and update the pin while preserving the
-`@vN` prefix style, as required by `php-library-github-workflows.md` rule 8.
+The action versions pinned in `ci.yml` (`actions/checkout@v7`, `actions/upload-artifact@v7`,
+`actions/download-artifact@v8`) may be outdated. Before adopting the workflow, verify the current
+major version of each action and update the pin while preserving the `@vN` prefix style, as
+required by `php-library-github-workflows.md` rule 8. No `setup-php` action appears: the tooling
+image resolved by `make show-image` carries the runtime.
 
 ## Validate
 
