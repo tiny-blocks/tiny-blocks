@@ -66,21 +66,22 @@ Apply only to `.github/workflows/ci.yml`. Additional workflows are not bound by 
    for every workflow, with purpose `ci` and a `pull_request` trigger, `concurrency.group` is
    `ci-${{ github.event.pull_request.number }}`.
 2. Trigger is `pull_request` only. No `push`, no branch filter, no `workflow_dispatch`.
-3. Jobs run in the fixed sequence `resolve-php-version`, `build`, `auto-review`, `tests`. Each
+3. Jobs run in the fixed sequence `resolve-tooling-image`, `build`, `auto-review`, `tests`. Each
    downstream job lists its upstream jobs in `needs`.
-4. PHP version is never hardcoded. The `resolve-php-version` job reads `.require.php` from
-   `composer.json` at runtime and exposes the minor version (for example, `8.5`) as the job
-   output `php-version`. Downstream jobs reference
-   `${{ needs.resolve-php-version.outputs.php-version }}` when setting up PHP.
-5. The `auto-review` job runs `composer review`. The `tests` job runs `composer tests`. No other
-   command is invoked in either job.
+4. Neither the PHP version nor the image is hardcoded in the workflow. The `resolve-tooling-image`
+   job runs `make show-image` and exposes the result as the job output `php-image`, so the
+   `Makefile` is the one place either is declared and CI cannot pin an image a developer never
+   runs. No `setup-php` action appears: every PHP command runs in that image.
+5. The `auto-review` job runs `make review`. The `tests` job runs `make tests`. No other command is
+   invoked in either job, and both reach PHP through the `Makefile` rather than through a runtime
+   installed on the runner.
 6. The `build` job uploads `vendor/` and `composer.lock` as a single artifact named
    `vendor-artifact`. The `auto-review` and `tests` jobs download that artifact instead of
    running `composer install` again.
 7. The `tests` job is the only job that may extend with extra setup the library needs (service
    containers, fixture preparation, environment variables used during testing). The other three
    jobs are identical across every library in the ecosystem.
-8. `timeout-minutes` is 5 for `resolve-php-version` and 15 for `build`, `auto-review`, and
+8. `timeout-minutes` is 5 for `resolve-tooling-image` and 15 for `build`, `auto-review`, and
    `tests`. `permissions` is `contents: read`.
 
 ## ci.yml job sequence
@@ -88,16 +89,16 @@ Apply only to `.github/workflows/ci.yml`. Additional workflows are not bound by 
 `ci.yml` gates every pull request with four jobs in this exact order. The first three are
 identical across every library. Only `tests` may extend.
 
-- **Resolve PHP version.** Reads `.require.php` from `composer.json` and exposes the minor version
-  as the output `php-version`. A single step uses `jq` and a short regex to extract the value.
-- **Build.** Sets up PHP using the resolved version, validates `composer.json`, installs with
-  `--no-progress --optimize-autoloader --prefer-dist --no-interaction`, and uploads `vendor/` and
-  `composer.lock` as `vendor-artifact`.
-- **Auto review.** Needs `resolve-php-version` and `build`. Downloads `vendor-artifact`, sets up
-  PHP, runs `composer review` (phpcs + phpstan).
-- **Tests.** Needs `resolve-php-version` and `auto-review`. Downloads `vendor-artifact`, sets up
-  PHP, runs `composer tests` (phpunit + infection). Library-specific test setup lives in this job
-  only.
+- **Resolve tooling image.** Runs `make show-image` and exposes the result as the output
+  `php-image`. One step, and the `Makefile` stays the only declaration of what PHP runs on.
+- **Build.** Validates `composer.json` and installs with
+  `--no-progress --optimize-autoloader --prefer-dist --no-interaction`, both inside the resolved
+  image mounted at `/var/www/html`, then uploads `vendor/` and `composer.lock` as
+  `vendor-artifact`.
+- **Auto review.** Needs `resolve-tooling-image` and `build`. Downloads `vendor-artifact` and runs
+  `make review` (phpcs + phpstan).
+- **Tests.** Needs `resolve-tooling-image` and `auto-review`. Downloads `vendor-artifact` and runs
+  `make tests` (phpunit + infection). Library-specific test setup lives in this job only.
 
 To extend the `tests` job (external services, env vars, fixtures), the additions go inside the
 `tests` job exclusively. The skill asset includes an extended example with a MySQL service

@@ -11,42 +11,39 @@ permissions:
   contents: read
 
 jobs:
-  resolve-php-version:
-    name: Resolve PHP version
+  resolve-tooling-image:
+    name: Resolve tooling image
     runs-on: ubuntu-latest
     timeout-minutes: 5
     outputs:
-      php-version: ${{ steps.config.outputs.php-version }}
+      php-image: ${{ steps.config.outputs.php-image }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
-      - name: Resolve PHP version from composer.json
+      - name: Resolve tooling image from the Makefile
         id: config
-        run: |
-          version=$(jq -r '.require.php' composer.json | grep -oP '\d+\.\d+' | head -1)
-          echo "php-version=$version" >> "$GITHUB_OUTPUT"
+        run: echo "php-image=$(make show-image)" >> "$GITHUB_OUTPUT"
 
   build:
     name: Build
-    needs: resolve-php-version
+    needs: resolve-tooling-image
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      image: ${{ needs.resolve-tooling-image.outputs.php-image }}
+      workspace: /var/www/html
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          tools: composer:2
-          php-version: ${{ needs.resolve-php-version.outputs.php-version }}
+        uses: actions/checkout@v7
 
       - name: Validate composer.json
-        run: composer validate --no-interaction
+        run: docker run --rm -v "${PWD}":${{ env.workspace }} ${{ env.image }} composer validate --no-interaction
 
       - name: Install dependencies
-        run: composer install --no-progress --optimize-autoloader --prefer-dist --no-interaction
+        run: >
+          docker run --rm -v "${PWD}":${{ env.workspace }} ${{ env.image }}
+          composer install --no-progress --optimize-autoloader --prefer-dist --no-interaction
 
       - name: Upload vendor and composer.lock as artifact
         uses: actions/upload-artifact@v7
@@ -58,18 +55,12 @@ jobs:
 
   auto-review:
     name: Auto review
-    needs: [resolve-php-version, build]
+    needs: [resolve-tooling-image, build]
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          tools: composer:2
-          php-version: ${{ needs.resolve-php-version.outputs.php-version }}
+        uses: actions/checkout@v7
 
       - name: Download vendor artifact from build
         uses: actions/download-artifact@v8
@@ -78,22 +69,16 @@ jobs:
           path: .
 
       - name: Run review
-        run: composer review
+        run: make review
 
   tests:
     name: Tests
-    needs: [resolve-php-version, auto-review]
+    needs: [resolve-tooling-image, auto-review]
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          tools: composer:2
-          php-version: ${{ needs.resolve-php-version.outputs.php-version }}
+        uses: actions/checkout@v7
 
       - name: Download vendor artifact from build
         uses: actions/download-artifact@v8
@@ -102,4 +87,4 @@ jobs:
           path: .
 
       - name: Run tests
-        run: composer tests
+        run: make tests
