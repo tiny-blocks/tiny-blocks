@@ -27,7 +27,6 @@ and public PHPDoc under vendor/tiny-blocks/<name>/.
 - `tiny-blocks/http-logging`: PSR-15 middleware that logs HTTP request and response metadata with request duration.
 - `tiny-blocks/http-query`: Typed, framework-independent toolkit for HTTP collection queries (RSQL filtering, sorting,
   and offset and cursor pagination) that never touches a data store.
-- `tiny-blocks/immutable-object`: Provides immutable behavior for objects.
 - `tiny-blocks/ksuid`: K-Sortable Unique Identifier.
 - `tiny-blocks/logger`: Emits PSR-3 structured logs for PHP, with correlation tracking and configurable sensitive data
   redaction.

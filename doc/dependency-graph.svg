@@ -53,39 +53,32 @@
 <text x="1438.0" y="295.5" fill="#d2daff" font-size="12.5" xml:space="preserve">
 <tspan x="1438.0" dy="0.0">http-error-handler, http-logging</tspan>
 </text>
-<rect x="40.0" y="384.0" width="430.0" height="152.0" rx="10" fill="#1c2136" stroke="#8f98d6" stroke-width="2" stroke-dasharray="8 5"/>
-<text x="58.0" y="415.6" fill="#8f98d6" font-size="17" xml:space="preserve">
-<tspan x="58.0" dy="0.0">immutable-object</tspan>
+<rect x="40.0" y="384.0" width="430.0" height="152.0" rx="10" fill="#d2daff" stroke="#4c5c94" stroke-width="2"/>
+<text x="58.0" y="415.6" fill="#4c5c94" font-size="17" xml:space="preserve">
+<tspan x="58.0" dy="0.0">mapper</tspan>
 </text>
-<text x="58.0" y="448.0" fill="#8f98d6" font-size="13" xml:space="preserve">
-<tspan x="58.0" dy="0.0">used by nobody</tspan>
+<text x="58.0" y="445.0" fill="#4c5c94" font-size="12" xml:space="preserve">
+<tspan x="58.0" dy="0.0">used by 5</tspan>
 </text>
-<rect x="500.0" y="384.0" width="430.0" height="152.0" rx="10" fill="#d2daff" stroke="#4c5c94" stroke-width="2"/>
-<text x="518.0" y="415.6" fill="#4c5c94" font-size="17" xml:space="preserve">
-<tspan x="518.0" dy="0.0">mapper</tspan>
+<text x="58.0" y="467.5" fill="#4c5c94" font-size="12.5" xml:space="preserve">
+<tspan x="58.0" dy="0.0">building-blocks, collection, http, outbox, time</tspan>
 </text>
-<text x="518.0" y="445.0" fill="#4c5c94" font-size="12" xml:space="preserve">
-<tspan x="518.0" dy="0.0">used by 5</tspan>
+<rect x="500.0" y="384.0" width="430.0" height="152.0" rx="10" fill="#1c2136" stroke="#8f98d6" stroke-width="2" stroke-dasharray="8 5"/>
+<text x="518.0" y="415.6" fill="#8f98d6" font-size="17" xml:space="preserve">
+<tspan x="518.0" dy="0.0">math</tspan>
 </text>
-<text x="518.0" y="467.5" fill="#4c5c94" font-size="12.5" xml:space="preserve">
-<tspan x="518.0" dy="0.0">building-blocks, collection, http, outbox, time</tspan>
+<text x="518.0" y="448.0" fill="#8f98d6" font-size="13" xml:space="preserve">
+<tspan x="518.0" dy="0.0">used by nobody</tspan>
 </text>
-<rect x="960.0" y="384.0" width="430.0" height="152.0" rx="10" fill="#1c2136" stroke="#8f98d6" stroke-width="2" stroke-dasharray="8 5"/>
-<text x="978.0" y="415.6" fill="#8f98d6" font-size="17" xml:space="preserve">
-<tspan x="978.0" dy="0.0">math</tspan>
+<rect x="960.0" y="384.0" width="430.0" height="152.0" rx="10" fill="#4c5c94" stroke="#d2daff" stroke-width="2"/>
+<text x="978.0" y="415.6" fill="#d2daff" font-size="17" xml:space="preserve">
+<tspan x="978.0" dy="0.0">value-object</tspan>
 </text>
-<text x="978.0" y="448.0" fill="#8f98d6" font-size="13" xml:space="preserve">
-<tspan x="978.0" dy="0.0">used by nobody</tspan>
+<text x="978.0" y="445.0" fill="#d2daff" font-size="12" xml:space="preserve">
+<tspan x="978.0" dy="0.0">used by 3</tspan>
 </text>
-<rect x="1420.0" y="384.0" width="430.0" height="152.0" rx="10" fill="#4c5c94" stroke="#d2daff" stroke-width="2"/>
-<text x="1438.0" y="415.6" fill="#d2daff" font-size="17" xml:space="preserve">
-<tspan x="1438.0" dy="0.0">value-object</tspan>
-</text>
-<text x="1438.0" y="445.0" fill="#d2daff" font-size="12" xml:space="preserve">
-<tspan x="1438.0" dy="0.0">used by 3</tspan>
-</text>
-<text x="1438.0" y="467.5" fill="#d2daff" font-size="12.5" xml:space="preserve">
-<tspan x="1438.0" dy="0.0">building-blocks, country, time</tspan>
+<text x="978.0" y="467.5" fill="#d2daff" font-size="12.5" xml:space="preserve">
+<tspan x="978.0" dy="0.0">building-blocks, country, time</tspan>
 </text>
 <polyline points="40.0,586.0 1880.0,586.0" fill="none" stroke="#4c5c94" stroke-width="1" stroke-dasharray="8 5"/>
 <text x="40.0" y="621.3" fill="#d2daff" font-size="21" xml:space="preserve">
