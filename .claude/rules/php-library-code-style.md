@@ -97,6 +97,13 @@ Verify every item before producing any PHP code. If any item fails, revise befor
    `$start/$end`, `$from/$to`, `$startAt/$endAt`), which takes precedence. Parameters with default
    values go last, regardless of name length. The same rule applies to named arguments at call
    sites. Example order: `$id` (2), `$value` (5), `$status` (6), `$precision` (9).
+
+   **A method implementing an interface the library does not own keeps the order that interface
+   declares.** The signature is not the library's to reorder, so the ordering rule yields to the
+   contract. PSR-15 `process(ServerRequestInterface $request, RequestHandlerInterface $handler)` is
+   the recurring case, and the `php-ordering-conformance` hook exempts the PSR methods that carry
+   two or more parameters inside a type implementing a `Psr\` interface. Renaming a parameter stays
+   free, because a PSR contract binds the type and never the name (rule 4).
 8. Never pass an argument whose value equals the parameter's default. Omit the argument entirely.
    Example with `toArray(KeyPreservation $keyPreservation = KeyPreservation::PRESERVE)`. The call
    `$collection->toArray(keyPreservation: KeyPreservation::PRESERVE)` becomes

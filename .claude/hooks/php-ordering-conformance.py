@@ -8,7 +8,9 @@ ordering conventions for PHP declarations:
   property promotion) in three tiers, required parameters first, then defaulted
   parameters, then a variadic, each tier by identifier length ascending,
   alphabetical tie-breaker, semantic pairs preserved. A PHPUnit test method fed by
-  a data provider is exempt, its parameters are the columns of its data set.
+  a data provider is exempt, its parameters are the columns of its data set. A method
+  of a PSR contract is exempt inside a type implementing that contract, since the
+  interface fixes the order.
 - Member ordering: constants, enum cases, constructor, static methods, instance
   methods, in that group order, each group length-ascending with alphabetical
   tie-breaker. Enum cases are exempt from the intra-group order, which is author-chosen
@@ -106,6 +108,27 @@ DATA_PROVIDER_REFERENCE: Final = re.compile(
     r"#\[\s*(?:\\?\w+\\)*DataProvider\s*\(\s*['\"](\w+)['\"]"
     r"|@dataProvider\s+(\w+)"
 )
+
+# A method whose parameter order is fixed by a contract the library does not own cannot
+# reorder its parameters, so the parameter check skips it. The set holds the PSR methods
+# that carry two or more parameters, and it applies only inside a type that implements an
+# interface imported from `Psr\`, so a same-named method the library owns (`set`, `get`,
+# `error`) stays checked everywhere else. Renaming a parameter is still governed by the
+# ordering rule, because a PSR contract binds the type and never the parameter name.
+PSR_IMPORT: Final = re.compile(r"^[ \t]*use\s+Psr\\[\w\\]*\\(\w+)\s*;", re.MULTILINE)
+IMPLEMENTS_CLAUSE: Final = re.compile(r"\bimplements\s+([\w\s,\\]+?)(?=\{)")
+FOREIGN_CONTRACTS: Final = frozenset({
+    # PSR-3 LoggerInterface
+    "alert", "critical", "debug", "emergency", "error", "info", "log", "notice", "warning",
+    # PSR-7 message, request, response, server request, stream, and URI interfaces
+    "seek", "withAddedHeader", "withAttribute", "withHeader", "withStatus", "withUri", "withUserInfo",
+    # PSR-15 MiddlewareInterface
+    "process",
+    # PSR-16 CacheInterface
+    "get", "getMultiple", "set", "setMultiple",
+    # PSR-17 factory interfaces
+    "createRequest", "createResponse", "createServerRequest", "createStreamFromFile", "createUploadedFile",
+})
 
 MAX_ERRORS_REPORTED = 30
 
@@ -456,9 +479,26 @@ def test_method_kind(name: str, providers: set[str]) -> MemberKind:
 # --- Checks -------------------------------------------------------------------
 
 
+def implements_foreign_contract(unit: FileUnit) -> bool:
+    """Whether a type in the file implements an interface imported from `Psr\\`."""
+    clean = unit.source.clean
+    imported = {match.group(1) for match in PSR_IMPORT.finditer(clean)}
+
+    if not imported:
+        return False
+
+    for match in IMPLEMENTS_CLAUSE.finditer(clean):
+        names = {name.strip().split("\\")[-1] for name in match.group(1).split(",")}
+        if names & imported:
+            return True
+
+    return False
+
+
 def parameter_violations(unit: FileUnit) -> tuple[Violation, ...]:
-    """Parameter ordering on every declaration a data provider does not feed."""
+    """Parameter ordering on every declaration no data provider feeds and no PSR contract fixes."""
     exempt = provider_consumer_lines(unit)
+    contracts = FOREIGN_CONTRACTS if implements_foreign_contract(unit) else frozenset()
     return tuple(
         Violation(
             line=signature.line,
@@ -471,7 +511,9 @@ def parameter_violations(unit: FileUnit) -> tuple[Violation, ...]:
         )
 
         for signature in declared_signatures(unit.source)
-        if signature.line not in exempt and signature.out_of_order()
+        if signature.line not in exempt
+        and signature.owner not in contracts
+        and signature.out_of_order()
     )
 
 
