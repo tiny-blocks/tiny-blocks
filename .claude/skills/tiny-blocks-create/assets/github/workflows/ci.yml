@@ -13,7 +13,7 @@ permissions:
 jobs:
   resolve-tooling-image:
     name: Resolve tooling image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 5
     outputs:
       php-image: ${{ steps.config.outputs.php-image }}
@@ -28,7 +28,7 @@ jobs:
   build:
     name: Build
     needs: resolve-tooling-image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     env:
       image: ${{ needs.resolve-tooling-image.outputs.php-image }}
@@ -56,7 +56,7 @@ jobs:
   auto-review:
     name: Auto review
     needs: [resolve-tooling-image, build]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     steps:
       - name: Checkout
@@ -74,7 +74,7 @@ jobs:
   tests:
     name: Tests
     needs: [resolve-tooling-image, auto-review]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     steps:
       - name: Checkout

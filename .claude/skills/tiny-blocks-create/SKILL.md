@@ -103,7 +103,7 @@ Example with a MySQL service container:
 tests:
   name: Tests
   needs: [resolve-tooling-image, auto-review]
-  runs-on: ubuntu-latest
+  runs-on: ubuntu-26.04
   timeout-minutes: 15
   env:
     DB_HOST: 127.0.0.1
