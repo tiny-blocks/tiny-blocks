@@ -16,7 +16,7 @@ permissions:
 jobs:
   link-checker:
     name: Link checker
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 15
     steps:
       - name: Checkout
