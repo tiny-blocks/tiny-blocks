@@ -24,7 +24,7 @@
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.52",
-        "infection/infection": "^0.34",
+        "infection/infection": "^0.35",
         "phpstan/phpstan": "^2.2",
         "phpunit/phpunit": "^13.2",
         "slevomat/coding-standard": "^8.31",
@@ -67,7 +67,7 @@
         "test-file": "@php ./vendor/bin/phpunit --configuration phpunit.xml --no-coverage --filter",
         "tests": [
             "@php -d memory_limit=2G ./vendor/bin/phpunit --configuration phpunit.xml tests",
-            "@php ./vendor/bin/infection --threads=max --logger-html=reports/coverage/mutation-report.html --coverage=reports/coverage"
+            "@php ./vendor/bin/infection --threads=max --logger-html=reports/coverage/mutation-report.html"
         ]
     }
 }
