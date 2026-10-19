@@ -78,9 +78,9 @@ prefixes). The first `keywords` entry is always `tiny-blocks`. The topic tokens 
    - `LICENSE`: MIT, attributed to the author in `composer.json`.
    - Initial `src/` and `tests/`: follow `php-library-architecture.md`,
      `php-library-code-style.md`, `php-library-modeling.md`, and `php-library-testing.md`.
-5. Register the new library in the ecosystem dependency graph at `doc/dependency-graph.excalidraw`
-   in the `tiny-blocks` meta repository. A new library is a new node even when it depends on
-   nothing. See `ecosystem-dependency-graph.md` for what has to move together.
+5. Register the new library in the documentation site: add it to `CATALOG` in
+   `src/content/catalog.ts` of `tiny-blocks/tiny-blocks.github.io`, with the area the home lists it
+   under. The site reads everything else from the library, its dependency graph included.
 6. Validate (see below) before reporting the scaffold complete.
 
 ## The .dist naming split

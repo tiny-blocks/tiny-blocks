@@ -18,7 +18,7 @@ the README and any `docs/` Markdown are written. "Required repository files" bel
 files must exist and points to the skill for their content.
 
 `CONTRIBUTING.md` is centralized at
-`https://github.com/tiny-blocks/tiny-blocks/blob/main/CONTRIBUTING.md`. Each library's README and
+`https://github.com/tiny-blocks/.github/blob/main/CONTRIBUTING.md`. Each library's README and
 pull request template link to that location. No local `CONTRIBUTING.md` is created per library.
 
 ## Pre-output checklist
@@ -73,7 +73,7 @@ The README follows a fixed section order:
    decisions.
 5. **License**. One-line link to the `LICENSE` file.
 6. **Contributing**. One-line link to the centralized `CONTRIBUTING.md` in
-   `tiny-blocks/tiny-blocks`.
+   `tiny-blocks/.github`.
 
 ### Header and license badge
 
@@ -179,7 +179,7 @@ citations stack as separate blockquote lines.
 ```markdown
 ## Contributing
 
-Please follow the [contributing guidelines](https://github.com/tiny-blocks/tiny-blocks/blob/main/CONTRIBUTING.md) to
+Please follow the [contributing guidelines](https://github.com/tiny-blocks/.github/blob/main/CONTRIBUTING.md) to
 contribute to the project.
 ```
 
