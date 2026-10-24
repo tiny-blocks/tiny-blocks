@@ -82,10 +82,11 @@ revise before outputting.
     `/.claude/settings.local.json`, the per-clone settings override, for parity with the meta
     repository, where `.claude/` is versioned.
 13. `Makefile` wraps every PHP and Composer command in Docker. It builds the image name from the
-    `major.minor` read out of `composer.json` `require.php` and a pinned `IMAGE_VERSION`, so a
-    runtime bump moves one declaration and the tooling follows. It exposes that name through
-    `show-image`, which is the single place CI reads it from, so the workflow cannot pin a
-    different image than the one a developer runs. No PHP command runs on the host directly.
+    `major.minor` read out of `composer.json` `require.php` and the floating `cli` alias of that
+    minor, so a runtime bump moves one declaration and every rebuild of the image reaches the
+    tooling with no change here. It exposes that name through `show-image`, which is the single
+    place CI reads it from, so the workflow cannot run a different image than the one a developer
+    runs. No PHP command runs on the host directly.
     Targets that share a name with a Composer script delegate to it. Additional non-Composer
     convenience targets (`help`, `clean`, `show-*`) are permitted.
 14. All test artifact paths use `reports/` (plural), consistent across `composer tests`,
