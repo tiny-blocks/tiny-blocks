@@ -10,7 +10,7 @@ when a convention needs explaining, it belongs in a rule or a skill, not here.
 ## Validate
 
 Every PHP and Composer command runs inside Docker via the `Makefile`, on the image the `Makefile`
-pins (`make show-image` prints it, and CI reads it from there so the two can never drift). Never run
+names (`make show-image` prints it, and CI reads it from there so the two can never drift). Never run
 PHP on the host directly.
 
 - `make review`: phpcs (PSR-12) + phpstan (`level: max`). Run before claiming code is clean.
