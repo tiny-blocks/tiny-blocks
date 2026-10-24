@@ -23,10 +23,10 @@
         "php": "^8.5"
     },
     "require-dev": {
-        "ergebnis/composer-normalize": "^2.52",
+        "ergebnis/composer-normalize": "^2.54",
         "infection/infection": "^0.35",
-        "phpstan/phpstan": "^2.2",
-        "phpunit/phpunit": "^13.2",
+        "phpstan/phpstan": "^2.3",
+        "phpunit/phpunit": "^13.4",
         "slevomat/coding-standard": "^8.31",
         "squizlabs/php_codesniffer": "^4.0"
     },
