@@ -39,6 +39,7 @@ Copy each asset to the path on the right, relative to the repository root.
 | `config/.gitignore`                        | `.gitignore`                                | no           |
 | `config/Makefile`                          | `Makefile`                                  | no           |
 | `github/workflows/ci.yml`                  | `.github/workflows/ci.yml`                  | no           |
+| `github/workflows/notify-site.yml`         | `.github/workflows/notify-site.yml`         | no           |
 | `github/ISSUE_TEMPLATE/bug_report.md`      | `.github/ISSUE_TEMPLATE/bug_report.md`      | no           |
 | `github/ISSUE_TEMPLATE/feature_request.md` | `.github/ISSUE_TEMPLATE/feature_request.md` | no           |
 | `github/PULL_REQUEST_TEMPLATE.md`          | `.github/PULL_REQUEST_TEMPLATE.md`          | no           |

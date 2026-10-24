@@ -1,0 +1,23 @@
+name: Notify the documentation site
+
+on:
+  release:
+    types:
+      - published
+
+concurrency:
+  group: notify-site-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  notify-site:
+    name: Notify the documentation site
+    runs-on: ubuntu-26.04
+    timeout-minutes: 5
+    steps:
+      - name: Ask the documentation site for a new build
+        env:
+          GH_TOKEN: '${{ secrets.SITE_DISPATCH_TOKEN }}'
+        run: gh api repos/tiny-blocks/tiny-blocks.github.io/dispatches -f event_type=library-released
